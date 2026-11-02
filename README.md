@@ -1,45 +1,93 @@
 # Cliff Walking using SARSA and Q-learning
 
+A reinforcement learning project that solves the classic `CliffWalking-v1` environment using both SARSA and Q-learning. The repository is designed to help compare how two widely used temporal-difference algorithms learn in the same environment.
+
 ## Overview
-This project implements and compares two reinforcement learning algorithms for solving the Cliff Walking environment:
+This project demonstrates how reinforcement learning agents can navigate a grid-world environment while avoiding a dangerous cliff and reaching the goal state efficiently.
 
-- **SARSA (State-Action-Reward-State-Action)**: an on-policy method that learns from the action actually taken.
-- **Q-learning**: an off-policy method that learns the optimal action-value function by using the maximum future reward.
+The repository includes implementations for:
 
-Both algorithms are applied to the same Cliff Walking environment to observe how different learning strategies navigate the grid and avoid the cliff.
+- SARSA (on-policy)
+- Q-learning (off-policy)
 
-## Environment Details
-The environment is based on `CliffWalking-v1` from the `gymnasium` library.
+These algorithms are trained on the same environment and can be compared based on behavior, convergence, and policy quality.
 
-* **Grid Size:** 4 rows by 12 columns (48 total states)
-* **Action Space:** 4 possible moves (Up, Down, Left, Right)
-* **Reward System:**
-  * **Standard Step:** -1
-  * **Cliff Node:** -100
-  * **Goal Node:** 0
+## Why this project?
+The Cliff Walking task is a classic reinforcement learning example that highlights:
 
-## Hyperparameters
-Based on the implementation, the following parameters are used to train the agents:
+- exploration vs exploitation
+- reward shaping and penalties
+- policy learning under uncertainty
+- differences between on-policy and off-policy learning
 
-* **Episodes:** 500
-* **Learning Rate (Alpha):** 0.5
-* **Discount Factor (Gamma):** 0.99
-* **Exploration Rate (Epsilon):** 0.1
+## Environment
+The environment is based on Gymnasium's `CliffWalking-v1`.
 
-## Results
-The agents successfully learn to navigate the grid while avoiding the cliff. SARSA tends to learn a more conservative policy because it updates based on the actual next action taken, while Q-learning often learns a more aggressive path toward the goal.
+- Grid size: 4 x 12
+- Total states: 48
+- Action space: Up, Down, Left, Right
+- Reward structure:
+  - Standard step: -1
+  - Cliff cell: -100
+  - Goal cell: 0
 
-* **SARSA Final Converged Reward:** -17
-* **Q-learning Final Converged Reward:** Typically competitive and may vary depending on the training setup and random seed
+## Algorithm Comparison
+
+| Algorithm | Type | Key idea | Typical behavior |
+| --- | --- | --- | --- |
+| SARSA | On-policy | Updates using the action actually taken | More conservative and cautious |
+| Q-learning | Off-policy | Updates using the best estimated future action | Often more aggressive and efficient |
+
+## Training Setup
+The project uses the following default parameter values:
+
+- Episodes: 500
+- Learning rate (alpha): 0.5
+- Discount factor (gamma): 0.99
+- Exploration rate (epsilon): 0.1
+
+## Repository Structure
+The project is organized around implementing and experimenting with reinforcement learning agents in the Cliff Walking environment.
 
 ## Dependencies
-* `gymnasium`
-* `numpy`
+Install the required Python libraries:
 
-## Algorithms Included
-This repository includes implementations for:
+```bash
+pip install gymnasium numpy
+```
 
-* **SARSA**
-* **Q-learning**
+## Running the Project
+Clone the repository and run the notebook or script that contains the training loop for the selected algorithm.
 
-These notebooks/implementations can be used to compare the behavior, convergence, and path selection of both algorithms in the same environment.
+```bash
+git clone https://github.com/Snowmass22/cliff_walking_using_SARSA_algo.git
+cd cliff_walking_using_SARSA_algo
+```
+
+Then run the notebook or script used for training the agent.
+
+## Results
+The agents learn to navigate the environment while avoiding the cliff. SARSA tends to produce a more cautious trajectory because it updates according to the action that was actually taken, while Q-learning often finds a more direct path toward the goal.
+
+Example outcome:
+
+- SARSA converged reward: approximately -17
+- Q-learning performance varies depending on the training setup and random seed
+
+## Project Goal
+This repository is useful for understanding:
+
+- how value-based RL algorithms behave in maze-like environments
+- how policy updates differ between SARSA and Q-learning
+- how reward penalties influence navigation behavior
+
+## License
+This project is intended for educational and experimental use in reinforcement learning.
+
+## Contributing
+Contributions, suggestions, and improvements are welcome. If you want to extend the project, consider adding:
+
+- visualizations of training progress
+- comparison plots for cumulative reward
+- more environments and algorithms
+- additional hyperparameter tuning experiments
